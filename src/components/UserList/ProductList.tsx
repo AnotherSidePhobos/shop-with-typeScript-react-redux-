@@ -6,7 +6,7 @@ import MediaCard from './../../components/Card/Card';
 import './ProductList.css';
 import BasicPagination from './../Pagination/Pagination';
 import {fetchAllProductsApiById, getTotalCountApi} from './../../API/api';
-
+import {fetchProductForSearchAction} from './../../redux/actions/product_actions';
 const UserList = () => {
 
     const {products, loading, error,} = useTypedSelector(state => state.product)
@@ -20,6 +20,10 @@ const UserList = () => {
     // useEffect(() => {
     //     dispatch(fetchProducts(1, 3))
     // }, [])
+    React.useEffect(() => {
+        getTotalCountApi()
+        .then((response) => dispatch(fetchProductForSearchAction(response)))
+      }, [])
 
     useEffect(() => {
         getTotalCountApi()

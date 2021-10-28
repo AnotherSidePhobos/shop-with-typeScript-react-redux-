@@ -16,7 +16,13 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import {Link} from 'react-router-dom';
-import './Search.css';
+import './PrimarySearchAppBar.css';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import {fetchItemsBySearch, fetchProductForSearchAction} from './../../redux/actions/product_actions';
+import { useDispatch } from 'react-redux';
+import {getTotalCountApi} from './../../API/api';
+import {fetchAfterSearch, fetchProducts} from './../../redux/actions/product_actions';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -59,6 +65,30 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+
+  const cartItems = useTypedSelector(state => state.cart.cartItems)
+  const productsForSearch = useTypedSelector(state => state.product.productsForSearch)
+
+  const dispatch = useDispatch()
+  let countAllItemsInCart = 0;
+  cartItems.map((item) => (
+    countAllItemsInCart += item.count
+  ))
+
+
+  let searchTextChanged = (inputText) => {
+    
+    if (!inputText) {
+      dispatch(fetchProducts(1, 3))
+    }
+    debugger
+
+    let newArr = productsForSearch.filter((item) => item.title.includes(inputText))
+    dispatch(fetchItemsBySearch(newArr))
+    dispatch(fetchAfterSearch())
+    
+  }
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -175,15 +205,18 @@ export default function PrimarySearchAppBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            <a href='/'><div>Sneaker shop</div></a>
+            
           </Typography>
+         
           <Search>
             <SearchIconWrapper>
-              <SearchIcon />
+              <SearchIcon/>
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onChange={(e) => searchTextChanged(e.target.value)}
             />
           </Search>
           <Typography
@@ -212,9 +245,11 @@ export default function PrimarySearchAppBar() {
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
+              <Link to='/cart'>
+                <Badge badgeContent={countAllItemsInCart} color="error">
+                  <ShoppingCartIcon/>
+                </Badge>
+              </Link>
             </IconButton>
             <IconButton
               size="large"

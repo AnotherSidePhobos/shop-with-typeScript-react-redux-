@@ -2,6 +2,7 @@ import { ProductState, ProductAction, ProductActionTypes } from '../../types/pro
 
 let initialState :ProductState = {
     products: [],
+    productsForSearch: [],
     loading: false,
     error: null,
     product: {},
@@ -48,6 +49,18 @@ export const product_reducer = (state = initialState, action: ProductAction): Pr
             return{
                 ...state,
                 totalItemsCount: action.payload
+            }            
+        case ProductActionTypes.FETCH_PRODUCTS_BY_SEARCH:
+            debugger
+            return{
+                ...state,
+                productsForSearch: action.payload
+            }            
+        case ProductActionTypes.FETCH_AFTER_SEARCH:
+            debugger
+            return{
+                ...state,
+                products: state.productsForSearch
             }            
     
         default:

@@ -38,9 +38,43 @@ export const setCurrentPage = (page) => {
 }
 export const getTotalProducts = (products) => {
 
-    console.log("length: ", products.length);
         return{
             type: ProductActionTypes.GET_TOTAL_PRODUCTS,
             payload: products.length
         }
 }
+export const fetchProductForSearchAction = (products) => {
+debugger
+        return{
+            type: ProductActionTypes.FETCH_PRODUCTS_BY_SEARCH,
+            payload: products
+        }
+}
+export const fetchItemsBySearch = (items: any[]) => {
+
+debugger
+
+    console.log("searchText: ", items);
+        return{
+            type: ProductActionTypes.FETCH_PRODUCTS_BY_SEARCH,
+            payload: items
+        }
+}
+export const fetchAfterSearch = () => {
+
+debugger
+
+        return{
+            type: ProductActionTypes.FETCH_AFTER_SEARCH,
+        }
+}
+// export const fetchItemsBySearch = (items: any[]) => {
+
+// debugger
+
+//     console.log("searchText: ", items);
+//         return{
+//             type: ProductActionTypes.FETCH_PRODUCTS_BY_SEARCH,
+//             payload: items
+//         }
+// }

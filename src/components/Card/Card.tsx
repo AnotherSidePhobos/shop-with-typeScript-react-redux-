@@ -8,11 +8,18 @@ import Typography from '@mui/material/Typography';
 import './Card.css';
 import Box from '@mui/material/Box';
 import {Link} from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import {addToCart} from './../../redux/actions/cart_actions';
+
 interface IMyProps {
   product: any
 }
 
 const MediaCard: React.FC<IMyProps> = (props: IMyProps) => {
+  const dispatch = useDispatch();
+  const addToCartClicked: any = (product) => {
+    dispatch(addToCart(product))
+  }
   console.log("props:", props);
   return (
     <Card sx={{ maxWidth: 345, marginTop: 10 }}>
@@ -30,19 +37,22 @@ const MediaCard: React.FC<IMyProps> = (props: IMyProps) => {
           {props.product.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {props.product.details}
+          {
+            props.product.details.length > 100 ? props.product.details.slice(0, 150) + "..." : props.product.details
+          }
 
         </Typography>
       </CardContent>
-      <CardActions>
-          <Button size="small">Share</Button>
+      <CardActions style={{display: "flex", justifyContent: 'space-around'}}>
           <Button size="small">Learn More</Button>
-          <Box ml='70px'>
+          <Box>
             <Typography gutterBottom variant="h6" component="div">
               {props.product.price} rub
             </Typography>
           </Box>
       </CardActions>
+      <Button onClick={() => {addToCartClicked(props.product)}} style={{width: "90%", marginBottom: "10px"}} variant="contained">Add To Cart</Button>
+      
     </Card>
   );
 }
