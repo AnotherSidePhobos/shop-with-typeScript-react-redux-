@@ -1,0 +1,11 @@
+.cards{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+.pagination{
+    padding-top: 15px;
+    max-width: 200px;
+    margin: 0 auto;
+}
