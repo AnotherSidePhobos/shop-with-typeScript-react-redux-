@@ -127,7 +127,7 @@ export default function CustomizedTables(props: { cartItems: any[] } ) {
                 <StyledTableCell component="th" scope="row">
                   {item.title}
                 </StyledTableCell>
-                <StyledTableCell align="center">{new Intl.NumberFormat().format(item.price * item.count) + 'rub'}</StyledTableCell>
+                <StyledTableCell align="center">{new Intl.NumberFormat().format(item.price * item.count) + ' rub'}</StyledTableCell>
                 <StyledTableCell align="center">{item.date}</StyledTableCell>
                 <StyledTableCell align="center">{item.category}</StyledTableCell>
                 <StyledTableCell align="center">{item.count}</StyledTableCell>

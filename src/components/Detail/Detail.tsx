@@ -14,7 +14,9 @@ debugger
     let { productId } = useParams<{productId?: string}>();
 
     const dispatch = useDispatch()
-
+    const onBackClicked = () => {
+        props.history.goBack()
+    }
     useEffect(() => {
         fetchAllProductsApiById(productId)
         .then((response) => dispatch(fetchSelectedProduct(response)))
@@ -38,7 +40,7 @@ debugger
                     </div>
                     <div style={{float: "left", marginLeft: "20px", marginTop: "200px"}}>
                         <Button onClick={() => onAddCartClicked(product)} variant="contained">Add to cart</Button>
-                        <Button style={{marginLeft: "10px"}} variant="contained">back</Button>
+                        <Button onClick={onBackClicked} style={{marginLeft: "10px"}} variant="contained">back</Button>
                     </div>
                 </div>
 

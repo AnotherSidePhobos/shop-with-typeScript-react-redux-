@@ -19,10 +19,9 @@ import {Link} from 'react-router-dom';
 import './PrimarySearchAppBar.css';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import {fetchItemsBySearch, fetchProductForSearchAction} from './../../redux/actions/product_actions';
 import { useDispatch } from 'react-redux';
 import {getTotalCountApi} from './../../API/api';
-import {fetchAfterSearch, fetchProducts} from './../../redux/actions/product_actions';
+import {fetchProducts, fetchAllProductBySearch} from './../../redux/actions/product_actions';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -67,7 +66,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function PrimarySearchAppBar() {
 
   const cartItems = useTypedSelector(state => state.cart.cartItems)
-  const productsForSearch = useTypedSelector(state => state.product.productsForSearch)
 
   const dispatch = useDispatch()
   let countAllItemsInCart = 0;
@@ -77,15 +75,14 @@ export default function PrimarySearchAppBar() {
 
 
   let searchTextChanged = (inputText) => {
-    
-    if (!inputText) {
-      dispatch(fetchProducts(1, 3))
-    }
-    debugger
 
-    let newArr = productsForSearch.filter((item) => item.title.includes(inputText))
-    dispatch(fetchItemsBySearch(newArr))
-    dispatch(fetchAfterSearch())
+    debugger
+    if (!inputText) {
+
+      dispatch(fetchProducts(1, 3))
+    }else{
+      dispatch(fetchAllProductBySearch(inputText))
+    }
     
   }
 
@@ -251,15 +248,7 @@ export default function PrimarySearchAppBar() {
                 </Badge>
               </Link>
             </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+
             <IconButton
               size="large"
               edge="end"

@@ -20,6 +20,21 @@ export const fetchProducts = (currentPage, pageSize) => {
         }
     }
 }
+export const fetchAllProductBySearch = (inputSearch) => {
+    debugger
+    return async (dispatch: Dispatch<ProductAction>) => {
+
+        const response = await axios.get(`http://localhost:3003/products`)
+        debugger
+        let newResponse = response.data.filter((res) => res.title.toLowerCase().includes(inputSearch.toLowerCase())) 
+
+        dispatch({
+            type: ProductActionTypes.FETCH_PRODUCT_BY_SEARCH,
+            payload: newResponse
+        })
+
+    }
+}
 
 export const fetchSelectedProduct = (product) => {
     debugger
@@ -43,38 +58,4 @@ export const getTotalProducts = (products) => {
             payload: products.length
         }
 }
-export const fetchProductForSearchAction = (products) => {
-debugger
-        return{
-            type: ProductActionTypes.FETCH_PRODUCTS_BY_SEARCH,
-            payload: products
-        }
-}
-export const fetchItemsBySearch = (items: any[]) => {
 
-debugger
-
-    console.log("searchText: ", items);
-        return{
-            type: ProductActionTypes.FETCH_PRODUCTS_BY_SEARCH,
-            payload: items
-        }
-}
-export const fetchAfterSearch = () => {
-
-debugger
-
-        return{
-            type: ProductActionTypes.FETCH_AFTER_SEARCH,
-        }
-}
-// export const fetchItemsBySearch = (items: any[]) => {
-
-// debugger
-
-//     console.log("searchText: ", items);
-//         return{
-//             type: ProductActionTypes.FETCH_PRODUCTS_BY_SEARCH,
-//             payload: items
-//         }
-// }

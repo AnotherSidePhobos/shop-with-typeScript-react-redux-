@@ -47,7 +47,10 @@ const MediaCard: React.FC<IMyProps> = (props: IMyProps) => {
           <Button size="small">Learn More</Button>
           <Box>
             <Typography gutterBottom variant="h6" component="div">
-              {props.product.price} rub
+              {
+                new Intl.NumberFormat().format(props.product.price)
+                
+              } rub
             </Typography>
           </Box>
       </CardActions>
