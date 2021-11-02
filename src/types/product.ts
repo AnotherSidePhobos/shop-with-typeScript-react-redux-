@@ -12,6 +12,7 @@ export interface ProductState {
 
 export enum ProductActionTypes{
     FETCH_PRODUCT = 'FETCH_PRODUCT',
+    FETCH_PRODUCT_BY_CAT = 'FETCH_PRODUCT_BY_CAT',
     FETCH_SELECTED_PRODUCT = 'FETCH_SELECTED_PRODUCT',
     FETCH_PRODUCT_SUCCESS = 'FETCH_PRODUCT_SUCCESS',
     FETCH_PRODUCT_ERROR = 'FETCH_PRODUCT_ERROR',
@@ -22,6 +23,10 @@ export enum ProductActionTypes{
 
 interface fetchProductAction{
     type: ProductActionTypes.FETCH_PRODUCT
+}
+interface setProductByPrice{
+    type: ProductActionTypes.FETCH_PRODUCT_BY_CAT,
+    payload: any[]
 }
 
 interface fetchSelectedProduct{
@@ -51,4 +56,4 @@ interface fetchAllProductBySearch{
 
 
 
-export type ProductAction =  fetchAllProductBySearch | fetchProductAction | getTotalProducts | setCurrentPage | fetchProductSuccessAction | fetchProductErrorAction | fetchSelectedProduct;
+export type ProductAction = setProductByPrice | fetchAllProductBySearch | fetchProductAction | getTotalProducts | setCurrentPage | fetchProductSuccessAction | fetchProductErrorAction | fetchSelectedProduct;

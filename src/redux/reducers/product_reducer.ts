@@ -57,6 +57,12 @@ export const product_reducer = (state = initialState, action: ProductAction): Pr
                 ...state,
                 products: action.payload
             }                    
+        case ProductActionTypes.FETCH_PRODUCT_BY_CAT:
+            debugger
+            return{
+                ...state,
+                products: action.payload
+            }                    
                 
         default:
             return state

@@ -211,7 +211,7 @@ export default function PrimarySearchAppBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            <a href='/'><div>Sneaker shop</div></a>
+            <a href='/'><div className='logo'>Sneaker shop</div></a>
             
           </Typography>
          
@@ -232,7 +232,7 @@ export default function PrimarySearchAppBar() {
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
             <Link to='/'>
-              <div>Home</div>
+              <div className='home_btn'>Home</div>
             </Link>
           </Typography>
 
@@ -250,8 +250,8 @@ export default function PrimarySearchAppBar() {
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Link to='/cart'>
+            <IconButton size="large" aria-label="show 4 new mails"  color="primary">
+              <Link to='/cart' >
                 <Badge badgeContent={countAllItemsInCart} color="error">
                   <ShoppingCartIcon/>
                 </Badge>

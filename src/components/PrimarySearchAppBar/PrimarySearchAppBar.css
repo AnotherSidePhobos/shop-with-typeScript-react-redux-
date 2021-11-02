@@ -4,4 +4,9 @@ a{
 }
 .about_btn{
     margin-left: 50px;
+    color: white;
+}
+.logo,
+.home_btn{
+    color: white;
 }

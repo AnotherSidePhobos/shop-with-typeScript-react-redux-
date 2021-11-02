@@ -44,7 +44,9 @@ const MediaCard: React.FC<IMyProps> = (props: IMyProps) => {
         </Typography>
       </CardContent>
       <CardActions style={{display: "flex", justifyContent: 'space-around'}}>
-          <Button size="small">Learn More</Button>
+          <Link to={`/detail/${props.product.id}`}>
+            <Button size="small">Learn More</Button>
+          </Link>
           <Box>
             <Typography gutterBottom variant="h6" component="div">
               {

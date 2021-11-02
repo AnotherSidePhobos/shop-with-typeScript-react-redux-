@@ -7,6 +7,7 @@ import { fetchSelectedProduct } from '../../redux/actions/product_actions';
 import Button from '@mui/material/Button';
 import './Detail.css';
 import {addToCart} from './../../redux/actions/cart_actions';
+import BasicRating from '../BasicRating/BasicRating';
 
 const Detail = (props) => {
     console.log("props: ", props.addToCart);
@@ -43,8 +44,8 @@ debugger
                         <Button onClick={onBackClicked} style={{marginLeft: "10px"}} variant="contained">back</Button>
                     </div>
                 </div>
-
             </div>
+                        <BasicRating/>
         </div>
     )
 }

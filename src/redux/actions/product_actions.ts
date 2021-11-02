@@ -43,6 +43,23 @@ export const fetchSelectedProduct = (product) => {
             payload: product
         })
 }
+export const setProductByPrice = (products, priceCategory) => {
+    let sortedProducts;
+    debugger
+    if (priceCategory === 'Chip') {
+        sortedProducts = products.sort((a, b) => {
+            return a.price - b.price
+        })
+    }else if(priceCategory === 'Expensive'){
+        sortedProducts = products.sort((a, b) => {
+            return b.price - a.price
+        })
+    }
+    return({
+        type: ProductActionTypes.FETCH_PRODUCT_BY_CAT,
+        payload: sortedProducts
+    })
+}
 
 
 export const setCurrentPage = (page) => {
@@ -52,10 +69,8 @@ export const setCurrentPage = (page) => {
     }
 }
 export const getTotalProducts = (products) => {
-
-        return{
-            type: ProductActionTypes.GET_TOTAL_PRODUCTS,
-            payload: products.length
-        }
+    return{
+        type: ProductActionTypes.GET_TOTAL_PRODUCTS,
+        payload: products.length
+    }
 }
-

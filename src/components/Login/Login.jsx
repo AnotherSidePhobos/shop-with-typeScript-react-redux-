@@ -1,7 +1,7 @@
 import './Login.css';
-import {Formik} from 'formik';
+import {Formik, Form} from 'formik';
 import * as yup from 'yup';
-
+import Button from '@mui/material/Button';
 
 const Login = () => {
 
@@ -25,7 +25,7 @@ const Login = () => {
             onSubmit={(values) => {console.log(values)}}
             >
                 {({values, errors, touched, handleChange, handleBlur, handleSubmit, isValid}) => (
-                    <div className='form'>
+                    <Form className='form'>
                         <p>
                             <label htmlFor={'login'}>Login</label><br/>
                             <input
@@ -35,6 +35,7 @@ const Login = () => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.login}
+                                autoComplete="off"
                             />
                         </p>
                         {touched.login && errors.login && <p className='error'>{errors.login}</p>}
@@ -47,17 +48,18 @@ const Login = () => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.password}
+                                autoComplete="off"
                             />
                         </p>
                         {touched.password && errors.password && <p className='error'>{errors.password}</p>}
-
-                        <button type={'submit'} onClick={handleSubmit} disabled={!isValid}>
+                        <br/>
+                        <Button variant="contained" type={'submit'} onClick={handleSubmit} disabled={!isValid}>
                             Log in
-                        </button>
-                        <button type='reset'>
+                        </Button>
+                        <Button variant="contained" type='reset'>
                             Reset
-                        </button>
-                    </div>
+                        </Button>
+                    </Form>
                 )}
             </Formik>
         </div>

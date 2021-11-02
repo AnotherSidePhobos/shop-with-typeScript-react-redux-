@@ -13,14 +13,17 @@ function App() {
   return (
     <div className="App">
       <SearchAppBar/>
-      <Switch>
-        <Route path='/' exact component={Home}/>
-        <Route path='/about' component={About}/>
-        <Route path='/cart' component={Cart}/>
-        <Route path='/register' component={Register}/>
-        <Route path='/login' component={Login}/>
-        <Route path='/detail/:productId' component={Detail}/>
-      </Switch>
+      <div className='main'>
+        
+        <Switch>
+          <Route path='/' exact component={Home}/>
+          <Route path='/about' component={About}/>
+          <Route path='/cart' component={Cart}/>
+          <Route path='/register' component={Register}/>
+          <Route path='/login' component={Login}/>
+          <Route path='/detail/:productId' component={Detail}/>
+        </Switch>
+      </div>
     </div>
   );
 }
