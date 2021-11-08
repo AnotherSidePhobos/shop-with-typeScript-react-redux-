@@ -20,8 +20,8 @@ import './PrimarySearchAppBar.css';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
-import {getTotalCountApi} from './../../API/api';
-import {fetchProducts, fetchAllProductBySearch} from './../../redux/actions/product_actions';
+import {getTotalCountApi} from '../../API/api';
+import {fetchProducts, fetchAllProductBySearch} from '../../redux/actions/product_actions';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -62,8 +62,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
-export default function PrimarySearchAppBar() {
+// interface IMyProps {
+//   myValue: {}
+// }
+const PrimarySearchAppBar = (props)  => {
+debugger
+debugger
+//here
+let temp = props;
 
   const cartItems = useTypedSelector(state => state.cart.cartItems)
 
@@ -92,7 +98,8 @@ export default function PrimarySearchAppBar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (e: any) => {
+  // const handleProfileMenuOpen = (e: any) => {
+  const handleProfileMenuOpen = (e) => {
     setAnchorEl(e.currentTarget);
   };
 
@@ -105,7 +112,8 @@ export default function PrimarySearchAppBar() {
     handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (e: any) => {
+  // const handleMobileMenuOpen = (e: any) => {
+  const handleMobileMenuOpen = (e) => {
     setMobileMoreAnchorEl(e.currentTarget);
   };
 
@@ -246,9 +254,19 @@ export default function PrimarySearchAppBar() {
               <div className='about_btn'>About</div>
             </Link>
           </Typography>
+  
           
 
           <Box sx={{ flexGrow: 1 }} />
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            
+            sx={{ display: { xs: 'none', sm: 'block' } }}
+          >
+              <div style={{cursor: 'pointer'}} onClick={props.toggleTheme} className='about_btn'>Switch on {props.currentTheme.background == 'lightgrey' ?'Dark Theme' :'Light Theme'}</div>
+          </Typography>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails"  color="primary">
               <Link to='/cart' >
@@ -289,3 +307,5 @@ export default function PrimarySearchAppBar() {
     </Box>
   );
 }
+
+export default PrimarySearchAppBar;
