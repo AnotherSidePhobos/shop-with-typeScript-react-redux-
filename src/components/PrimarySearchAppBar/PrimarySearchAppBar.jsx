@@ -265,7 +265,7 @@ let temp = props;
             
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-              <div style={{cursor: 'pointer'}} onClick={props.toggleTheme} className='about_btn'>Switch on {props.currentTheme.background == 'lightgrey' ?'Dark Theme' :'Light Theme'}</div>
+              <div style={{cursor: 'pointer'}} onClick={props.toggleTheme} className='about_btn'>Switch on {props.currentTheme.background == '#dde0e4' ?'Dark Theme' :'Light Theme'}</div>
           </Typography>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails"  color="primary">

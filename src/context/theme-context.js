@@ -3,10 +3,10 @@ import { createContext } from "react"
 
 export const themes = {
     light: {
-        background: 'lightgrey'
+        background: '#dde0e4'
     },
     dark: {
-        background: '#727a78'
+        background: '#515e6e'
     }
 }
 
